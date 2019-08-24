@@ -131,14 +131,17 @@ def train():
 
     d_sampler = get_distribution_sampler(data_mean, data_stddev)
     gi_sampler = get_generator_input_sampler()
+
     G = Generator(input_size=g_input_size,
                   hidden_size=g_hidden_size,
                   output_size=g_output_size,
                   f=generator_activation_function)
+
     D = Discriminator(input_size=d_input_func(d_input_size),
                       hidden_size=d_hidden_size,
                       output_size=d_output_size,
                       f=discriminator_activation_function)
+
     # Binary cross entropy: http://pytorch.org/docs/nn.html#bceloss
     criterion = nn.BCELoss()
     d_optimizer = optim.SGD(
